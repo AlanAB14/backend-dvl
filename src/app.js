@@ -6,6 +6,8 @@ const cors = require('cors');
 // Import route modules
 const indexRoutes = require('./routes/index.routes.js');
 const usuariosRoutes = require('./routes/usuarios.routes.js');
+const rolesRoutes = require('./routes/roles.routes.js');
+const policiesRoutes = require('./routes/policies.routes.js');
 
 const app = express();
 
@@ -16,6 +18,9 @@ app.use(bodyParser.urlencoded({ limit: '500mb', extended: true, parameterLimit: 
 // Use route modules
 app.use(indexRoutes);
 app.use('/api', usuariosRoutes);
+app.use('/api', rolesRoutes);
+app.use('/api', rolesRoutes);
+app.use('/api', policiesRoutes);
 
 app.use((req, res, next) => {
     res.status(404).json({

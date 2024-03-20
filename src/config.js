@@ -16,4 +16,4 @@ module.exports.DB_PORT = 3306;
 // module.exports.DB_DATABASE =  'sql10675693';
 // module.exports.DB_PORT =  3306;
 
-// module.exports.SECRET_KEY = 'TokenPrimicia';
+module.exports.SECRET_KEY = 'TokenDVL';
