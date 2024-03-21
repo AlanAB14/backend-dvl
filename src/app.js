@@ -8,6 +8,11 @@ const indexRoutes = require('./routes/index.routes.js');
 const usuariosRoutes = require('./routes/usuarios.routes.js');
 const rolesRoutes = require('./routes/roles.routes.js');
 const policiesRoutes = require('./routes/policies.routes.js');
+const numbersUsRoutes = require('./routes/numbers-us.routes.js');
+const newsRoutes = require('./routes/news.routes.js');
+const infoUsRoutes = require('./routes/info-us.routes.js');
+const commentsRoutes = require('./routes/comments.routes.js');
+const certificationsRoutes = require('./routes/certifications.routes.js');
 
 const app = express();
 
@@ -21,6 +26,11 @@ app.use('/api', usuariosRoutes);
 app.use('/api', rolesRoutes);
 app.use('/api', rolesRoutes);
 app.use('/api', policiesRoutes);
+app.use('/api', numbersUsRoutes);
+app.use('/api', newsRoutes);
+app.use('/api', infoUsRoutes);
+app.use('/api', commentsRoutes);
+app.use('/api', certificationsRoutes);
 
 app.use((req, res, next) => {
     res.status(404).json({
