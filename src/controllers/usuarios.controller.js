@@ -14,6 +14,19 @@ exports.getUsuarios = async (req, res) => {
     }
 };
 
+exports.getUsuario = async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const [rows] = await pool.query('SELECT avatar, created_at, email, role_id, user_id, username FROM users WHERE user_id = ?', [id]);
+        res.json(rows[0]);
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Something goes wrong'
+        });
+    }
+};
+
 exports.registerUsuario = async (req, res) => {
     const { username, password, email, role_id, avatar } = req.body;
     if (!username || !password || !email || !role_id) {

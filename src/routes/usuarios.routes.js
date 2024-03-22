@@ -5,12 +5,14 @@ const {
   loginUsuario,
   registerUsuario,
   updateUsuario,
+  getUsuario,
 } = require('../controllers/usuarios.controller.js');
 const { verificarToken } = require('../middleware/verificarToken.js');
 
 const router = express.Router();
 
 router.get('/usuarios', verificarToken, getUsuarios);
+router.get('/usuarios/:id', verificarToken, getUsuario);
 router.post('/usuarios/login', loginUsuario);
 router.post('/usuarios/register', registerUsuario);
 router.patch('/usuarios/:id', verificarToken, updateUsuario);
