@@ -4,7 +4,7 @@ CREATE TABLE `users` (
   `email` varchar(255) UNIQUE NOT NULL,
   `password` varchar(255) NOT NULL,
   `role_id` integer NOT NULL,
-  `avatar` varchar(255),
+  `avatar` longtext,
   `created_at` timestamp DEFAULT now()
 );
 
