@@ -1,4 +1,6 @@
+const { SECRET_KEY } = require('../config.js');
 const { pool } = require('../db.js');
+const jwt = require('jsonwebtoken');
 
 exports.getNumbers = async (req, res) => {
     try {
@@ -16,7 +18,7 @@ exports.updateNumbers = async (req, res) => {
 
     try {
         const token = req.header('Authorization');
-        if (!text || !token) {
+        if (!number || !token) {
             return res.status(400).json({
                 message: 'Faltan campos'
             });
