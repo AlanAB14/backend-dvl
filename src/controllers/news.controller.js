@@ -1,4 +1,6 @@
+const { SECRET_KEY } = require('../config.js');
 const { pool } = require('../db.js');
+const jwt = require('jsonwebtoken');
 
 exports.getNews = async (req, res) => {
     try {
