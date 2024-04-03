@@ -1,4 +1,6 @@
 const { pool } = require('../db.js');
+const { SECRET_KEY } = require('../config.js');
+const jwt = require('jsonwebtoken');
 
 exports.getCertifications = async (req, res) => {
     try {
