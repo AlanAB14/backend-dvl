@@ -13,6 +13,7 @@ const newsRoutes = require('./routes/news.routes.js');
 const infoUsRoutes = require('./routes/info-us.routes.js');
 const commentsRoutes = require('./routes/comments.routes.js');
 const certificationsRoutes = require('./routes/certifications.routes.js');
+const contactsRoutes = require('./routes/contacts.routes.js');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use('/api', newsRoutes);
 app.use('/api', infoUsRoutes);
 app.use('/api', commentsRoutes);
 app.use('/api', certificationsRoutes);
+app.use('/api', contactsRoutes);
 
 app.use((req, res, next) => {
     res.status(404).json({
