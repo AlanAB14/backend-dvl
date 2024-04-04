@@ -8,6 +8,16 @@ CREATE TABLE `users` (
   `created_at` timestamp DEFAULT now()
 );
 
+CREATE TABLE `contact` (
+  `id` integer PRIMARY KEY AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `company` varchar(255) NOT NULL,
+  `country` varchar(255) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp DEFAULT now()
+);
+
 CREATE TABLE `roles` (
   `role_id` integer PRIMARY KEY AUTO_INCREMENT,
   `role` varchar(255) NOT NULL
