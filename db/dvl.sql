@@ -80,7 +80,7 @@ ALTER TABLE `numbers_us` ADD FOREIGN KEY (`updated_by`) REFERENCES `users` (`use
 
 ALTER TABLE `policies` ADD FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`);
 
-ALTER TABLE `certificaciones` ADD FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`);
+ALTER TABLE `certifications` ADD FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`);
 
 ALTER TABLE `news` ADD FOREIGN KEY (`updated_by`) REFERENCES `users` (`user_id`);
 
