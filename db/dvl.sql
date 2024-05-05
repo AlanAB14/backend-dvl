@@ -93,12 +93,12 @@ insert into roles (role_id, role) values (3, 'guest');
 
 -- insert into users (user_id, username, email, password, role_id, avatar, created_at) values (1, 'admin', 'admin@admin.com', 'admin', 1, '', '');
 
-insert into policies (id, text, updated_by) values (1, 'PRIORIZAR la capacitación permanente para asegurar las competencias del personal en los diferentes niveles de la organización y generar un ambiente de trabajo motivador, brindando el apoyo y los recursos necesarios para garantizar la mejora continua.', 5);
-insert into policies (id, text, updated_by) values (2, 'ADAPTARSE a las nuevas demandas, focalizando permanentemente en la innovación de la tecnología y los procesos, mediante una organización flexible que sea capaz de dar respuesta a las necesidades de los clientes, actuales y potenciales.', 5);
-insert into policies (id, text, updated_by) values (3, 'PROVEER bienes y servicios que constantemente satisfagan los requerimientos de los clientes, el capital humano y la dirección estratégica de la empresa.', 5);
-insert into policies (id, text, updated_by) values (4, 'ADOPTAR una estrategia de estandarización de los procesos para mejorar la eficiencia y obtener los mejores costos, estableciendo metas y objetivos específicos.', 5);
-insert into policies (id, text, updated_by) values (5, 'TRABAJAR en conjunto con nuestros proveedores para alcanzar su compromiso con la calidad, y así poder garantizarla a nuestros clientes.', 5);
-insert into policies (id, text, updated_by) values (6, 'CONTRIBUIR de manera activa y responsable con el desarrollo sustentable.', 5);
+insert into policies (id, text, updated_by) values (1, 'PRIORIZAR la capacitación permanente para asegurar las competencias del personal en los diferentes niveles de la organización y generar un ambiente de trabajo motivador, brindando el apoyo y los recursos necesarios para garantizar la mejora continua.', 1);
+insert into policies (id, text, updated_by) values (2, 'ADAPTARSE a las nuevas demandas, focalizando permanentemente en la innovación de la tecnología y los procesos, mediante una organización flexible que sea capaz de dar respuesta a las necesidades de los clientes, actuales y potenciales.', 1);
+insert into policies (id, text, updated_by) values (3, 'PROVEER bienes y servicios que constantemente satisfagan los requerimientos de los clientes, el capital humano y la dirección estratégica de la empresa.', 1);
+insert into policies (id, text, updated_by) values (4, 'ADOPTAR una estrategia de estandarización de los procesos para mejorar la eficiencia y obtener los mejores costos, estableciendo metas y objetivos específicos.', 1);
+insert into policies (id, text, updated_by) values (5, 'TRABAJAR en conjunto con nuestros proveedores para alcanzar su compromiso con la calidad, y así poder garantizarla a nuestros clientes.', 1);
+insert into policies (id, text, updated_by) values (6, 'CONTRIBUIR de manera activa y responsable con el desarrollo sustentable.', 1);
 
 insert into numbers_us (number, type, updated_by) values (100, 'empleados', 1);
 insert into numbers_us (number, type, updated_by) values (6500, 'estructura', 1);

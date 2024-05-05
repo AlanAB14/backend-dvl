@@ -10,10 +10,10 @@ dotenv.config();
 // module.exports.DB_PORT = 3306;
 
 module.exports.PORT = 3001;
-module.exports.DB_USER =  'root';
-module.exports.DB_PASSWORD =  'epLKjHkRWEBMjyHWeGkOMEYweAyTHxdB';
-module.exports.DB_HOST =  'monorail.proxy.rlwy.net';
-module.exports.DB_DATABASE =  'railway';
-module.exports.DB_PORT =  19797;
+module.exports.DB_USER =  'nfdzgkds_admin';
+module.exports.DB_PASSWORD =  'S)QA$n,F-L4N';
+module.exports.DB_HOST =  '167.250.5.63';
+module.exports.DB_DATABASE =  'nfdzgkds_dvl';
+module.exports.DB_PORT =  3306;
 
 module.exports.SECRET_KEY = 'TokenDVL';

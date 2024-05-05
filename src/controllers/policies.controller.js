@@ -7,6 +7,7 @@ exports.getPolicies = async (req, res) => {
         const [rows] = await pool.query('SELECT * FROM policies');
         res.json(rows);
     } catch (error) {
+        console.log(error)
         return res.status(500).json({
             message: 'Something goes wrong'
         });
