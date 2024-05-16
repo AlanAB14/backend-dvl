@@ -8,7 +8,7 @@ CREATE TABLE `users` (
   `created_at` timestamp DEFAULT now()
 );
 
-CREATE TABLE `contact` (
+CREATE TABLE `contacts` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
