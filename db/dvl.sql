@@ -26,7 +26,7 @@ CREATE TABLE `roles` (
 CREATE TABLE `info_us` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
-  `subtitle` varchar(255) NOT NULL,
+  `subtitle` varchar(255) NULL,
   `image` longtext NOT NULL,
   `text` text NOT NULL,
   `updated_by` integer
