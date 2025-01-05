@@ -1,9 +1,10 @@
-const { pool } = require('../db.js');
+const { getPool } = require('../db.js');
 const { SECRET_KEY } = require('../config.js');
 const jwt = require('jsonwebtoken');
 
 exports.getCertifications = async (req, res) => {
     try {
+        const pool = await getPool();
         const [rows] = await pool.query('SELECT * FROM certifications');
         res.json(rows);
     } catch (error) {
@@ -31,6 +32,7 @@ exports.createCertifications = async (req, res) => {
                 message: 'El usuario no tiene privilegios para realizar la acción'
             });
         }
+        const pool = await getPool();
         const result = await pool.query('INSERT INTO certifications (date, title, img_preview, image, text, updated_by) VALUES (?, ?, ?, ?, ?, ?)', [date, title, img_preview, image, text, decoded.user_id]);
         if (result.affectedRows === 0) return res.status(404).json({
             message: 'Policy not found'
@@ -65,6 +67,7 @@ exports.updateCertifications = async (req, res) => {
                 message: 'El usuario no tiene privilegios para realizar la acción'
             });
         }
+        const pool = await getPool();
         const result = await pool.query('UPDATE certifications set date = IFNULL(?, date), title = IFNULL(?, title), img_preview = IFNULL(?, img_preview), image = IFNULL(?, image), text = IFNULL(?, text), updated_by = IFNULL(?, updated_by) WHERE id = ?', [date, title, img_preview, image, text, decoded.user_id, id]);
         if (result.affectedRows === 0) return res.status(404).json({
             message: 'Servicio not found'
@@ -83,6 +86,7 @@ exports.updateCertifications = async (req, res) => {
 
 exports.deleteCertification = async (req, res) => {
     try {
+        const pool = await getPool();
         const [result] = await pool.query('DELETE FROM certifications WHERE id = ?', [req.params.id]);
         if (result.affectedRows <= 0) return res.status(404).json({
             message: 'Certification not found'

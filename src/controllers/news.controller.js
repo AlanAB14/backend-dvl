@@ -1,9 +1,10 @@
 const { SECRET_KEY } = require('../config.js');
-const { pool } = require('../db.js');
+const { getPool } = require('../db.js');
 const jwt = require('jsonwebtoken');
 
 exports.getNews = async (req, res) => {
     try {
+        const pool = await getPool();
         const [rows] = await pool.query('SELECT * FROM news');
         res.json(rows);
     } catch (error) {
@@ -15,6 +16,7 @@ exports.getNews = async (req, res) => {
 
 exports.getNewsPreview = async (req, res) => {
     try {
+        const pool = await getPool();
         const [rows] = await pool.query('SELECT id, img_preview, updated_by FROM news');
         res.json(rows);
     } catch (error) {
@@ -27,6 +29,7 @@ exports.getNewsPreview = async (req, res) => {
 exports.getNew = async (req, res) => {
     const { id } = req.params;
     try {
+        const pool = await getPool();
         const [rows] = await pool.query('SELECT id, image, text, updated_by FROM news WHERE id = ?', [id]);
         res.json(rows);
     } catch (error) {
@@ -54,6 +57,7 @@ exports.createNew = async (req, res) => {
                 message: 'El usuario no tiene privilegios para realizar la acción'
             });
         }
+        const pool = await getPool();
         const result = await pool.query('INSERT INTO news (img_preview, image, text, updated_by) VALUES (?, ?, ?, ?)', [img_preview, image, text, decoded.user_id]);
         if (result.affectedRows === 0) return res.status(404).json({
             message: 'New not found'
@@ -88,6 +92,7 @@ exports.updateNew = async (req, res) => {
                 message: 'El usuario no tiene privilegios para realizar la acción'
             });
         }
+        const pool = await getPool();
         const result = await pool.query('UPDATE news set img_preview = IFNULL(?, img_preview), image = IFNULL(?, image), text = IFNULL(?, text), updated_by = IFNULL(?, updated_by) WHERE id = ?', [img_preview, image, text, decoded.user_id, id]);
         if (result.affectedRows === 0) return res.status(404).json({
             message: 'Servicio not found'
@@ -106,6 +111,7 @@ exports.updateNew = async (req, res) => {
 
 exports.deleteNew = async (req, res) => {
     try {
+        const pool = await getPool();
         const [result] = await pool.query('DELETE FROM news WHERE id = ?', [req.params.id]);
         if (result.affectedRows <= 0) return res.status(404).json({
             message: 'New not found'

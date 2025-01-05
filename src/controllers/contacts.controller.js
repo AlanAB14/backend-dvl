@@ -1,9 +1,10 @@
-const { pool } = require('../db.js');
+const { getPool } = require('../db.js');
 const { SECRET_KEY } = require('../config.js');
 const jwt = require('jsonwebtoken');
 
 exports.getContacts = async (req, res) => {
     try {
+        const pool = await getPool();
         const [rows] = await pool.query('SELECT * FROM contacts');
         res.json(rows);
     } catch (error) {
@@ -31,6 +32,7 @@ exports.createContact = async (req, res) => {
         //         message: 'El usuario no tiene privilegios para realizar la acción'
         //     });
         // }
+        const pool = await getPool();
         const result = await pool.query('INSERT INTO contacts (name, email, company, country, message) VALUES (?, ?, ?, ?, ?)', [name, email, company, country, message]);
         if (result.affectedRows === 0) return res.status(404).json({
             message: 'Contact not found'
@@ -49,6 +51,7 @@ exports.createContact = async (req, res) => {
 
 exports.deleteContact = async (req, res) => {
     try {
+        const pool = await getPool();
         const [result] = await pool.query('DELETE FROM contacts WHERE id = ?', [req.params.id]);
         if (result.affectedRows <= 0) return res.status(404).json({
             message: 'Contact not found'

@@ -1,9 +1,10 @@
 const { SECRET_KEY } = require('../config.js');
-const { pool } = require('../db.js');
+const { getPool } = require('../db.js');
 const jwt = require('jsonwebtoken');
 
 exports.getInfo = async (req, res) => {
     try {
+        const pool = await getPool();
         const [rows] = await pool.query('SELECT * FROM info_us');
         res.json(rows);
     } catch (error) {
@@ -32,6 +33,7 @@ exports.updateInfoUs = async (req, res) => {
                 message: 'El usuario no tiene privilegios para realizar la acción'
             });
         }
+        const pool = await getPool();
         const result = await pool.query('UPDATE info_us set title = IFNULL(?, title), subtitle = IFNULL(?, subtitle), image = IFNULL(?, image), text = IFNULL(?, text), updated_by = IFNULL(?, updated_by) WHERE id = ?', [title, subtitle, image, text, decoded.user_id, id]);
         if (result.affectedRows === 0) return res.status(404).json({
             message: 'Info not found'

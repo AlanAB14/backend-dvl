@@ -1,10 +1,11 @@
-const { pool } = require('../db.js');
+const { getPool } = require('../db.js');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { SECRET_KEY } = require('../config.js');
 
 exports.getUsuarios = async (req, res) => {
     try {
+        const pool = await getPool();
         const [rows] = await pool.query('SELECT * FROM users');
         res.json(rows);
     } catch (error) {
@@ -18,6 +19,7 @@ exports.getUsuario = async (req, res) => {
     const { id } = req.params;
 
     try {
+        const pool = await getPool();
         const [rows] = await pool.query('SELECT avatar, created_at, email, role_id, user_id, username FROM users WHERE user_id = ?', [id]);
         res.json(rows[0]);
     } catch (error) {
@@ -33,6 +35,7 @@ exports.registerUsuario = async (req, res) => {
         return res.status(400).json({ message: 'Todos los campos son obligatorios' });
     }
     try {
+        const pool = await getPool();
         const [rowsUser] = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
         if (rowsUser.length === 0) {
             const [rowsUserEmail] = await pool.query('SELECT * FROM users WHERE email = ?', [email]);
@@ -74,6 +77,7 @@ exports.loginUsuario = async (req, res) => {
         return res.status(400).json({ message: 'Todos los campos son obligatorios' });
     }
     try {
+        const pool = await getPool();
         const [rowsUser] = await pool.query('SELECT * FROM users WHERE username = ?', [username]);
         if (rowsUser.length !== 0) {
             const coincide = bcrypt.compareSync(password, rowsUser[0].password);
@@ -102,6 +106,7 @@ exports.updateUsuario = async (req, res) => {
         if (password) {
             password = bcrypt.hashSync(password, 10);
         }
+        const pool = await getPool();
         const result = await pool.query('UPDATE users set password = IFNULL(?, password), role_id = IFNULL(?, role_id), avatar = IFNULL(?, avatar) WHERE user_id = ?', [password, role_id, avatar, id]);
         if (result.affectedRows === 0) return res.status(404).json({
             message: 'Servicio not found'
@@ -120,6 +125,7 @@ exports.updateUsuario = async (req, res) => {
 
 exports.deleteUsuario = async (req, res) => {
     try {
+        const pool = await getPool();
         const [result] = await pool.query('DELETE FROM users WHERE user_id = ?', [req.params.id]);
         if (result.affectedRows <= 0) return res.status(404).json({
             message: 'Servicio not found'
